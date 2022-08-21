@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 const PostList = () => {
-  const [posts, setPosts] = useState({});//post içeriği bu listede tutulacak.useState kullandığımız için bu liste 
-                                          //program yeniden başlayana kadar silinmeyecek.Her yerni eklediğimiz post listeye eklenir
+  const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
     const res = await axios.get("http://localhost:4000/posts");
@@ -20,9 +21,12 @@ const PostList = () => {
       <div
         className="card"
         style={{ width: "30%", marginBottom: "20px" }}
-        key={post.id}>
+        key={post.id}
+      >
         <div className="card-body">
-          <h3>{post.id}-{post.title}-{post.description}</h3>
+          <h3>{post.title}</h3>
+          <CommentList postId={post.id} />
+          <CommentCreate postId={post.id} />
         </div>
       </div>
     );
