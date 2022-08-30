@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: event-bus
-          image: alkaya/event-bus
+          image: cygnetops/event-bus-85
 ---
 apiVersion: v1
 kind: Service
